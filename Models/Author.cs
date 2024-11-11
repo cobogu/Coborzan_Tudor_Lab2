@@ -20,5 +20,7 @@ namespace Coborzan_Tudor_Lab2.Models
         }
 
         public ICollection<Book>? Books { get; set; }
+
+       
     }
 }
