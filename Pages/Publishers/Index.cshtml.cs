@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Coborzan_Tudor_Lab2.Data;
 using Coborzan_Tudor_Lab2.Models;
 using Coborzan_Tudor_Lab2.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Coborzan_Tudor_Lab2.Pages.Publishers
 {
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
         private readonly Coborzan_Tudor_Lab2.Data.Coborzan_Tudor_Lab2Context _context;

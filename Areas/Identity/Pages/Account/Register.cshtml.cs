@@ -39,7 +39,7 @@ _context;
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            Data.Coborzan_Tudor_Lab2Context context)
+            Coborzan_Tudor_Lab2.Data.Coborzan_Tudor_Lab2Context context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -55,8 +55,9 @@ _context;
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         [BindProperty]
-
         public Member Member { get; set; }
+
+        [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
@@ -131,7 +132,8 @@ _context;
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    var userId = await _userManager.GetUserIdAsync(user);
+                var role = await _userManager.AddToRoleAsync(user, "User");
+                var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
